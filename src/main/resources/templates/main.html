@@ -1,62 +1,61 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pixel Dungeon</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-</head>
-<body>
-     <div id='my_div'>
-        <img id="cat" src="/img/cat.gif" width="30">
-    </div>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-    <script>
-        const div = document.getElementById('my_div');
+    <head>
+        <meta charset="UTF-8">
+        <title>Pixel Dungeon</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    </head>
+    <body>
+         <div id='my_div'>
+            <img id="cat" src="/img/cat.gif" width="30">
+         </div>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+         <script>
+            const div = document.getElementById('my_div');
 
-        div.addEventListener('click', (e) => {  //맵 클릭시
-             var att = (e.pageX-10)+"px";
-             var att2 = (e.pageY-10)+"px";
-             TweenMax.to('#cat', 0.5, {x: att});
-            TweenMax.to('#cat', 0.5, {y: att2});
-        });
-        var keyPressed = [];
-        setInterval(update, 50);
-        window.onkeydown = function(e) {
-            keyPressed[e.keyCode] = true;
-        }
-        window.onkeyup = function(e) {
-            keyPressed[e.keyCode] = false;
-        }
-        function update() {
-            let x = document.getElementById('cat').getBoundingClientRect().left;
-            let y = document.getElementById('cat').getBoundingClientRect().top;
-             var press = false;
-             if (keyPressed[38]) { //상
-                y -= 10;
-                press = true;
+            div.addEventListener('click', (e) => {  //맵 클릭시
+                let att = (e.pageX-10)+"px";
+                let att2 = (e.pageY-10)+"px";
+                TweenMax.to('#cat', 0.5, {x: att});
+                TweenMax.to('#cat', 0.5, {y: att2});
+            });
+            let keyPressed = [];
+            setInterval(update, 50);
+            window.onkeydown = function(e) {
+                keyPressed[e.keyCode] = true;
             }
-            if (keyPressed[40]) {  //하
-                y += 10;
-                press = true;
+            window.onkeyup = function(e) {
+                keyPressed[e.keyCode] = false;
             }
-            if (keyPressed[37]) {  //좌
-                x -= 10;
-                press = true;
+            function update() {
+                let x = document.getElementById('cat').getBoundingClientRect().left;
+                let y = document.getElementById('cat').getBoundingClientRect().top;
+                let press = false;
+                if (keyPressed[38]) { //상
+                    y -= 10;
+                    press = true;
+                }
+                if (keyPressed[40]) {  //하
+                    y += 10;
+                    press = true;
+                }
+                if (keyPressed[37]) {  //좌
+                    x -= 10;
+                    press = true;
+                }
+                if (keyPressed[39]) {  //우
+                    x += 10;
+                    press = true;
+                }
+                if (press) {
+                    move(x,y);
+                }
             }
-            if (keyPressed[39]) {  //우
-                x += 10;
-                press = true;
+            function move(x,y){
+               TweenMax.to('#cat', 0.2, {x: x, y: y});
             }
-            if (press) {
-                move(x,y);
-            }
-        }
-         function move(x,y){
-            TweenMax.to('#cat', 0.2, {x: x, y: y});
-         }
-     </script>
-</body>
-
+        </script>
+    </body>
 </html>

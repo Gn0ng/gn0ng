@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pixel Dungeon</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    </head>
+    <body>
+        <div th:each="char, status: ${characters}" ><button id="player" th:onclick="|location.href='@{/game/}'+${char.getId()}|" >
+            <img th:src="${char.getImg()}" height="100px" margin="auto">
+        </button>
+        <input type="hidden" name="ch" th:value="${char.getId()}"></div>
+    </body>
+
+    <script>
+
+
+    </script>
+</html>

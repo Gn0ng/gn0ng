@@ -5,7 +5,7 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 @Data
-public class CharacterDto {
+public class PlayableCharacterDto {
 
     private Long id;
 
@@ -22,8 +22,8 @@ public class CharacterDto {
     public Character createCharacter(){
         return modelMapper.map(this, Character.class);
     }
-    public static CharacterDto of(Character character) {
-        return modelMapper.map(character, CharacterDto.class);
+    public static PlayableCharacterDto of(Character character) {
+        return modelMapper.map(character, PlayableCharacterDto.class);
 
     }
 }

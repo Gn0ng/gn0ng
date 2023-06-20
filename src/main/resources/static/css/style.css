@@ -63,3 +63,9 @@
     position: relative;
     top: 600px;
 }
+#player{
+    width: 100px;
+    height: 100px;
+    display: inline-flex;
+    background: wheat;
+}

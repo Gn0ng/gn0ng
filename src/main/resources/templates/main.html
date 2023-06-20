@@ -9,17 +9,19 @@
     </head>
     <body>
          <div id='my_div'>
-            <img id="cat" src="/img/cat.gif" width="30">
+            <img id="cat" th:src="${ch.img}" width="30"  >
          </div>
+
          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-         <script>
+         <script th:inline="javascript">
+            var ch = [[${ch}]];
             const div = document.getElementById('my_div');
 
             div.addEventListener('click', (e) => {  //맵 클릭시
                 let att = (e.pageX-10)+"px";
                 let att2 = (e.pageY-10)+"px";
-                TweenMax.to('#cat', 0.5, {x: att});
-                TweenMax.to('#cat', 0.5, {y: att2});
+                TweenMax.to('#cat', ch.speed, {x: att});
+                TweenMax.to('#cat', ch.speed, {y: att2});
             });
             let keyPressed = [];
             setInterval(update, 50);
